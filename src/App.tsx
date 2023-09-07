@@ -14,6 +14,7 @@ import StartButton from "./components/StartButton/StartButton";
 
 // Styles
 import { StyledTetrisWrapper, StyledTetris } from "./App.styles";
+import GlobalStyles from "./components/GlobalStyles.styles";
 
 const App: React.FC = () => {
   const [dropTime, setDropTime] = React.useState<null | number>(null);
@@ -100,33 +101,36 @@ const App: React.FC = () => {
     drop()
   }, dropTime);
 
-  return (
+ return (
+  <div>
+    <GlobalStyles />
     <StyledTetrisWrapper
-    role="button"
-    tabIndex={0}
-    onKeyDown={move}
-    onKeyUp={keyUp}
-    ref={gameArea}
+      role="button"
+      tabIndex={0}
+      onKeyDown={move}
+      onKeyUp={keyUp}
+      ref={gameArea}
     >
-    <StyledTetris>
-    <div className="display">
-    {gameOver ? (
-      <>
-      <Display gameOver={gameOver} text="Game Over!" />
-      <StartButton callback={handleStartGame} />
-      </>
-    ) : (
-      <>
-        <Display text={`Score: ${score}`} />
-        <Display text={`Rows: ${rows}`} />
-        <Display text={`Level: ${level}`} />
-      </>
-    )}
-    </div>
-    <Stage stage={stage} />
-    </StyledTetris>
+      <StyledTetris>
+        <div className="display">
+          {gameOver ? (
+            <>
+              <Display gameOver={gameOver} text="Game Over!" />
+              <StartButton callback={handleStartGame} />
+            </>
+          ) : (
+            <>
+              <Display text={`Score: ${score}`} />
+              <Display text={`Rows: ${rows}`} />
+              <Display text={`Level: ${level}`} />
+            </>
+          )}
+        </div>
+        <Stage stage={stage} />
+      </StyledTetris>
     </StyledTetrisWrapper>
-  )
+  </div>
+);
 }
 
 export default App

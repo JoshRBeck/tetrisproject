@@ -8,4 +8,4 @@ type Props = {
 
 const Cell: React.FC<Props> = ({ type }) => <StyledCell type={type} color={TETROMINOS[type].color} />
 
-export default React.memo(cell);
+export default React.memo(Cell);
